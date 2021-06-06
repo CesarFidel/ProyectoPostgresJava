@@ -12,24 +12,40 @@ import javax.swing.table.TableModel;
 
 
 public class Restaurante extends javax.swing.JFrame {
-    Connection conexion;
-    String pass="postgres";
-    String user="postgres";
-    String idSeleccionado;
-    DefaultTableModel modeloPlatillo = new DefaultTableModel(); 
-    DefaultTableModel modeloSucursal = new DefaultTableModel(); 
-    DefaultTableModel modeloZonaDomicilio = new DefaultTableModel(); 
-    DefaultTableModel modeloCliente = new DefaultTableModel(); 
+    public static Connection conexion;
+    public static String pass;
+    public static String user;
+    public static String idSeleccionado;
+    public static String idPlatilloSeleccionado;
+    public static DefaultTableModel modeloPlatillo = new DefaultTableModel(); 
+    public static DefaultTableModel modeloSucursal = new DefaultTableModel(); 
+    public static DefaultTableModel modeloZonaDomicilio = new DefaultTableModel(); 
+    public static DefaultTableModel modeloCliente = new DefaultTableModel(); 
+    public static DefaultTableModel modeloEmpleado = new DefaultTableModel(); 
+    public static DefaultTableModel modeloGerente = new DefaultTableModel(); 
+    public static DefaultTableModel modeloRepartidor = new DefaultTableModel(); 
+    public static DefaultTableModel modeloCocinero = new DefaultTableModel(); 
+    public static DefaultTableModel modeloPedido = new DefaultTableModel(); 
+    public static DefaultTableModel modeloDetallePedido = new DefaultTableModel(); 
+    public static DefaultTableModel modeloReporte1 = new DefaultTableModel(); 
+    public static DefaultTableModel modeloReporte2 = new DefaultTableModel(); 
     /**
      * Creates new form Restaurante
      */
     public Restaurante() {
         initComponents();
-        estableceConexion();
-        modeloTabla();
-        llenaTabla(2);
+        //estableceConexion();
+        //modeloTabla();
+        //llenaTabla(2);
     }
 
+    
+    public static void carga()
+    {
+        estableceConexion();
+        modeloTabla();
+        llenaTabla();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +94,6 @@ public class Restaurante extends javax.swing.JFrame {
         JBModificarCliente = new javax.swing.JButton();
         JBEliminarCliente = new javax.swing.JButton();
         JBInsertarCliente = new javax.swing.JButton();
-        JTZonaCliente = new javax.swing.JTextField();
         JTNombreCliente = new javax.swing.JTextField();
         JTDomicilioCliente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -92,6 +107,107 @@ public class Restaurante extends javax.swing.JFrame {
         JTTelefonoCliente = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         JTEmailCliente = new javax.swing.JTextField();
+        jComboBoxZonaCliente = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        JTNombreEmpleado = new javax.swing.JTextField();
+        JTNSSEmpleado = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        JTCelularEmpleado = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        JTTelefonoEmpleado = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        JTDomicilioEmpleado = new javax.swing.JTextField();
+        JBInsertarEmpleado = new javax.swing.JButton();
+        JBEliminarEmpleado = new javax.swing.JButton();
+        JBModificarEmpleado = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        JTEmpleado = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        JTEmailEmpleado = new javax.swing.JTextField();
+        jComboBoxSucursalEmpleado = new javax.swing.JComboBox<>();
+        jPanel6 = new javax.swing.JPanel();
+        jComboBoxIdEmpleadoGerente = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        JTSueldoFijoGerente = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        JTGerente = new javax.swing.JTable();
+        JBInsertarGerente = new javax.swing.JButton();
+        JBEliminarGerente = new javax.swing.JButton();
+        JBModificarGerente = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBoxIdEmpleadoRepartidor = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        JTPagoRepartidor = new javax.swing.JTextField();
+        JBInsertarRepartidor = new javax.swing.JButton();
+        JBEliminarRepartidor = new javax.swing.JButton();
+        JBModificarRepartidor = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        JTRepartidor = new javax.swing.JTable();
+        jPanel8 = new javax.swing.JPanel();
+        jComboBoxIdEmpleadoCocinero = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        JTPlatillosCocinero = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        JTCocinero = new javax.swing.JTable();
+        JBModificarCocinero = new javax.swing.JButton();
+        JBEliminarCocinero = new javax.swing.JButton();
+        JBInsertarCocinero = new javax.swing.JButton();
+        JTHorasCocinero = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        JTPagoCocinero = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jComboBoxSucursalPedido = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        JTFechaPedido = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        JTHoraInicioPedido = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        JTHoraDeseadaPedido = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        JTComisionPedido = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        JTPedido = new javax.swing.JTable();
+        JBModificarPedido = new javax.swing.JButton();
+        JBEliminarPedido = new javax.swing.JButton();
+        JBInsertarPedido = new javax.swing.JButton();
+        jComboBoxlEmpleadoPedido = new javax.swing.JComboBox<>();
+        jComboBoxClientePedido = new javax.swing.JComboBox<>();
+        jPanel10 = new javax.swing.JPanel();
+        jComboBoxPedidoDetalle = new javax.swing.JComboBox<>();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jComboBoxlPlatilloPedido = new javax.swing.JComboBox<>();
+        jLabel39 = new javax.swing.JLabel();
+        JTCantProdDetalle = new javax.swing.JTextField();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        JTDetallePedido = new javax.swing.JTable();
+        JBInsertarPedido1 = new javax.swing.JButton();
+        JBEliminarPedido1 = new javax.swing.JButton();
+        JBModificarPedido1 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        JTCantidadPedidos = new javax.swing.JTable();
+        jLabel40 = new javax.swing.JLabel();
+        jComboBoxReporte1 = new javax.swing.JComboBox<>();
+        jLabel42 = new javax.swing.JLabel();
+        jButtonReporte1 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jButtonReporte2 = new javax.swing.JButton();
+        jComboBoxReporte2 = new javax.swing.JComboBox<>();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        JTReporte2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,7 +264,7 @@ public class Restaurante extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -252,7 +368,7 @@ public class Restaurante extends javax.swing.JFrame {
                             .addComponent(JBEliminarZona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JBInsertarZona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -329,7 +445,7 @@ public class Restaurante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -408,6 +524,7 @@ public class Restaurante extends javax.swing.JFrame {
 
             }
         ));
+        JTCliente.setToolTipText(" ");
         JTCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JTClienteMouseClicked(evt);
@@ -421,6 +538,8 @@ public class Restaurante extends javax.swing.JFrame {
 
         jLabel14.setText("Email");
 
+        jComboBoxZonaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -428,7 +547,7 @@ public class Restaurante extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -439,10 +558,10 @@ public class Restaurante extends javax.swing.JFrame {
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JTDireccionCliente)
-                                    .addComponent(JTZonaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(JTDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                     .addComponent(JTNombreCliente)
-                                    .addComponent(JTDomicilioCliente))
+                                    .addComponent(JTDomicilioCliente)
+                                    .addComponent(jComboBoxZonaCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
@@ -465,37 +584,36 @@ public class Restaurante extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(JBInsertarCliente)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jComboBoxZonaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBEliminarCliente)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(JTNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBModificarCliente))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(JTZonaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(JTNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(JTDomicilioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(JTTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel14)
-                                    .addComponent(JTEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(JTDomicilioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(JTDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JTDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13)
+                                .addComponent(JTTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel14)
+                                .addComponent(JTEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(JBInsertarCliente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBEliminarCliente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBModificarCliente))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -503,13 +621,871 @@ public class Restaurante extends javax.swing.JFrame {
 
         jTabbedPaneSucusal.addTab("Cliente", jPanel4);
 
+        jLabel15.setText("Sucursal");
+
+        jLabel16.setText("Nombre");
+
+        jLabel17.setText("NSS");
+
+        jLabel18.setText("Celular");
+
+        jLabel19.setText("Teléfono");
+
+        jLabel20.setText("Domicilio");
+
+        JBInsertarEmpleado.setText("Insertar");
+        JBInsertarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarEmpleadoMouseClicked(evt);
+            }
+        });
+
+        JBEliminarEmpleado.setText("Eliminar");
+        JBEliminarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarEmpleadoMouseClicked(evt);
+            }
+        });
+
+        JBModificarEmpleado.setText("Modificar");
+        JBModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarEmpleadoMouseClicked(evt);
+            }
+        });
+
+        JTEmpleado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTEmpleadoMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(JTEmpleado);
+
+        jLabel21.setText("Email");
+
+        jComboBoxSucursalEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(JTCelularEmpleado))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxSucursalEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JTNombreEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JTNSSEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel19))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JTTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JTDomicilioEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JTEmailEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JBModificarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBEliminarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBInsertarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(JBInsertarEmpleado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JBEliminarEmpleado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(JBModificarEmpleado)
+                                    .addComponent(JTEmailEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(JTNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(JTNSSEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel21))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(JTCelularEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(JTTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxSucursalEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(JTDomicilioEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneSucusal.addTab("Empleado", jPanel5);
+
+        jComboBoxIdEmpleadoGerente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel22.setText("Id Empleado");
+
+        jLabel23.setText("Sueldo fijo");
+
+        JTGerente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTGerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTGerenteMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(JTGerente);
+
+        JBInsertarGerente.setText("Insertar");
+        JBInsertarGerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarGerenteMouseClicked(evt);
+            }
+        });
+
+        JBEliminarGerente.setText("Eliminar");
+        JBEliminarGerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarGerenteMouseClicked(evt);
+            }
+        });
+
+        JBModificarGerente.setText("Modificar");
+        JBModificarGerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarGerenteMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel22)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBoxIdEmpleadoGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel23)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JTSueldoFijoGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(265, 265, 265)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JBModificarGerente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBEliminarGerente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBInsertarGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addComponent(JBInsertarGerente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBEliminarGerente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBModificarGerente))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addComponent(jLabel22)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel23)
+                                .addComponent(JTSueldoFijoGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxIdEmpleadoGerente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPaneSucusal.addTab("Gerente", jPanel6);
+
+        jLabel24.setText("Id Empleado");
+
+        jComboBoxIdEmpleadoRepartidor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel25.setText("Pago");
+
+        JBInsertarRepartidor.setText("Insertar");
+        JBInsertarRepartidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarRepartidorMouseClicked(evt);
+            }
+        });
+
+        JBEliminarRepartidor.setText("Eliminar");
+        JBEliminarRepartidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarRepartidorMouseClicked(evt);
+            }
+        });
+
+        JBModificarRepartidor.setText("Modificar");
+        JBModificarRepartidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarRepartidorMouseClicked(evt);
+            }
+        });
+
+        JTRepartidor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTRepartidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTRepartidorMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(JTRepartidor);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(jLabel24)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBoxIdEmpleadoRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(jLabel25)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JTPagoRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(265, 265, 265)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JBModificarRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBEliminarRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBInsertarRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(JBInsertarRepartidor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBEliminarRepartidor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBModificarRepartidor))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(jLabel24)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel25)
+                                .addComponent(JTPagoRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxIdEmpleadoRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPaneSucusal.addTab("Repartidor", jPanel7);
+
+        jComboBoxIdEmpleadoCocinero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel26.setText("Id Empleado");
+
+        jLabel27.setText("Cantidad de Platillos");
+
+        JTCocinero.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTCocinero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTCocineroMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(JTCocinero);
+
+        JBModificarCocinero.setText("Modificar");
+        JBModificarCocinero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarCocineroMouseClicked(evt);
+            }
+        });
+
+        JBEliminarCocinero.setText("Eliminar");
+        JBEliminarCocinero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarCocineroMouseClicked(evt);
+            }
+        });
+
+        JBInsertarCocinero.setText("Insertar");
+        JBInsertarCocinero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarCocineroMouseClicked(evt);
+            }
+        });
+
+        jLabel28.setText("Horas de contrato");
+
+        jLabel29.setText("Pago");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JTHorasCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTPlatillosCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTPagoCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxIdEmpleadoCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(527, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel26)
+                            .addGap(518, 518, 518)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JBModificarCocinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBEliminarCocinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBInsertarCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBoxIdEmpleadoCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTPlatillosCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(JTHorasCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(JTPagoCocinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(252, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(JBInsertarCocinero)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBEliminarCocinero)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(JBModificarCocinero))
+                        .addComponent(jLabel26))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPaneSucusal.addTab("Cocinero", jPanel8);
+
+        jLabel30.setText("Sucursal");
+
+        jComboBoxSucursalPedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel31.setText("Empleado");
+
+        jLabel32.setText("Cliente");
+
+        jLabel33.setText("Fecha de pedido");
+
+        jLabel34.setText("Hora de pedido");
+
+        jLabel35.setText("Hora deseada");
+
+        jLabel36.setText("Comision");
+
+        JTPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTPedidoMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(JTPedido);
+
+        JBModificarPedido.setText("Modificar");
+        JBModificarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarPedidoMouseClicked(evt);
+            }
+        });
+
+        JBEliminarPedido.setText("Eliminar");
+        JBEliminarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarPedidoMouseClicked(evt);
+            }
+        });
+
+        JBInsertarPedido.setText("Insertar");
+        JBInsertarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarPedidoMouseClicked(evt);
+            }
+        });
+
+        jComboBoxlEmpleadoPedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jComboBoxClientePedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel33)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxSucursalPedido, 0, 212, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxClientePedido, 0, 212, Short.MAX_VALUE)
+                                    .addComponent(JTFechaPedido)
+                                    .addComponent(jComboBoxlEmpleadoPedido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel30))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(JTComisionPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel36)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jLabel34))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JTHoraInicioPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JTHoraDeseadaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JBModificarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBEliminarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBInsertarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74))))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel31))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(JBInsertarPedido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JBEliminarPedido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JBModificarPedido))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jComboBoxSucursalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxlEmpleadoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxClientePedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel36)))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel34)
+                                    .addComponent(JTHoraInicioPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel35)
+                                    .addComponent(JTHoraDeseadaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTComisionPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(JTFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel32)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneSucusal.addTab("Pedido", jPanel9);
+
+        jComboBoxPedidoDetalle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel37.setText("Id Pedido");
+
+        jLabel38.setText("Id Platillo");
+
+        jComboBoxlPlatilloPedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "", "" }));
+
+        jLabel39.setText("Cantidad de productos");
+
+        JTDetallePedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTDetallePedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTDetallePedidoMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(JTDetallePedido);
+
+        JBInsertarPedido1.setText("Insertar");
+        JBInsertarPedido1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInsertarPedido1MouseClicked(evt);
+            }
+        });
+
+        JBEliminarPedido1.setText("Eliminar");
+        JBEliminarPedido1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBEliminarPedido1MouseClicked(evt);
+            }
+        });
+
+        JBModificarPedido1.setText("Modificar");
+        JBModificarPedido1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBModificarPedido1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JTCantProdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JBModificarPedido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBEliminarPedido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBInsertarPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel37)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                                    .addComponent(jLabel38)
+                                    .addGap(75, 75, 75)
+                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBoxlPlatilloPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxPedidoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(0, 544, Short.MAX_VALUE))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(JBInsertarPedido1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBEliminarPedido1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBModificarPedido1))
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel39)
+                        .addComponent(JTCantProdDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(276, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel37)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel38))
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jComboBoxPedidoDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxlPlatilloPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPaneSucusal.addTab("Detalle Pedido", jPanel10);
+
+        JTCantidadPedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTCantidadPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTCantidadPedidosMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(JTCantidadPedidos);
+
+        jLabel40.setText("Ordenar por");
+
+        jComboBoxReporte1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Más ventas", "Menos ventas" }));
+
+        jLabel42.setText("Cantidad de pedidos por sucursal");
+
+        jButtonReporte1.setText("Realizar reporte");
+        jButtonReporte1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporte1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel40)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                            .addGap(108, 108, 108)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBoxReporte1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonReporte1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jLabel42))
+                .addContainerGap(564, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel42)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel40)
+                    .addComponent(jComboBoxReporte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReporte1)
+                .addContainerGap(273, Short.MAX_VALUE))
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addContainerGap(136, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPaneSucusal.addTab("Reporte 1", jPanel11);
+
+        jButtonReporte2.setText("Realizar reporte");
+        jButtonReporte2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporte2ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxReporte2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "", "" }));
+
+        jLabel41.setText("Ordenar por");
+
+        jLabel43.setText("Cantidad de platillos pedidos");
+
+        JTReporte2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        JTReporte2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTReporte2MouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(JTReporte2);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonReporte2)
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel43)
+                                .addGroup(jPanel12Layout.createSequentialGroup()
+                                    .addComponent(jLabel41)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBoxReporte2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(jComboBoxReporte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReporte2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneSucusal.addTab("Reporte 2", jPanel12);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneSucusal, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneSucusal)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -541,7 +1517,7 @@ public class Restaurante extends javax.swing.JFrame {
                     JTDescripcionPlatillo.getText() + "','" + JTCostoPlatillo.getText() + "')";
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(1);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al insertar " + e);
@@ -555,7 +1531,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idPlatillo=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(1);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -571,7 +1547,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idPlatillo=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(1);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -595,7 +1571,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idSucursal=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(2);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -609,7 +1585,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idSucursal=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(2);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -624,7 +1600,7 @@ public class Restaurante extends javax.swing.JFrame {
                     JTDireccionSucursal.getText() + "')";
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(2);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al insertar " + e);
@@ -632,7 +1608,7 @@ public class Restaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_JBInsertarSucursalMouseClicked
 
     private void jTabbedPaneSucusalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneSucusalMouseClicked
-        llenaTabla(0);  
+        llenaTabla();  
     }//GEN-LAST:event_jTabbedPaneSucusalMouseClicked
 
     private void JBModificarZonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarZonaMouseClicked
@@ -644,7 +1620,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + " WHERE idZona=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(3);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -658,7 +1634,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idZona=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(3);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -674,7 +1650,7 @@ public class Restaurante extends javax.swing.JFrame {
                     JTComisionZona.getText() + ")";
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(3);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al insertar " + e);
@@ -692,9 +1668,9 @@ public class Restaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_JTZonaMouseClicked
 
     private void JBModificarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarClienteMouseClicked
+        String[] parts = jComboBoxZonaCliente.getSelectedItem().toString().split("-");
         try{
-            Statement st = conexion.createStatement();
-            String[] parts = JTZonaCliente.getText().split("-");
+            Statement st = conexion.createStatement();            
             String sql = "UPDATE RESTAURANTBD.Cliente SET " + 
                     "idZona="+ parts[0] + 
                     ",nombre='"+JTNombreCliente.getText() + 
@@ -705,7 +1681,7 @@ public class Restaurante extends javax.swing.JFrame {
                     "WHERE idCliente=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(4);             
+            llenaTabla();             
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al modificar " + e);
@@ -719,7 +1695,7 @@ public class Restaurante extends javax.swing.JFrame {
                     + "WHERE idCliente=" + idSeleccionado;
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(4);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
@@ -727,10 +1703,12 @@ public class Restaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_JBEliminarClienteMouseClicked
 
     private void JBInsertarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarClienteMouseClicked
+        String[] parts = jComboBoxZonaCliente.getSelectedItem().toString().split("-");
+        
         try{
             Statement st = conexion.createStatement();
             String sql = "INSERT INTO RESTAURANTBD.Cliente(idZona,nombre,domicilio, direccion, telefono, email)"
-                    + " VALUES(" + JTZonaCliente.getText() + 
+                    + " VALUES(" + parts[0] + 
                     ",'" + JTNombreCliente.getText() + "','" + 
                     JTDomicilioCliente.getText() + "','" + 
                     JTDireccionCliente.getText() +  "','" +
@@ -738,7 +1716,7 @@ public class Restaurante extends javax.swing.JFrame {
                     JTEmailCliente.getText() + "')";
             st.executeUpdate(sql);
             st.close();
-            llenaTabla(4);            
+            llenaTabla();            
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Error al insertar " + e);
@@ -749,15 +1727,522 @@ public class Restaurante extends javax.swing.JFrame {
         int index = JTCliente.getSelectedRow();
         TableModel model = JTCliente.getModel();
         
-        String[] parts = model.getValueAt(index, 1).toString().split("-");
+        //String[] parts = model.getValueAt(index, 1).toString().split("-");
         idSeleccionado = model.getValueAt(index, 0).toString();
-        JTZonaCliente.setText(parts[0]);
+        //JOptionPane.showMessageDialog(null, parts[0]);
+        jComboBoxZonaCliente.setSelectedItem(model.getValueAt(index, 1).toString());
         JTNombreCliente.setText(model.getValueAt(index, 2).toString());
         JTDomicilioCliente.setText(model.getValueAt(index, 3).toString());
         JTDireccionCliente.setText(model.getValueAt(index, 4).toString());
         JTTelefonoCliente.setText(model.getValueAt(index, 5).toString());
         JTEmailCliente.setText(model.getValueAt(index, 6).toString());
     }//GEN-LAST:event_JTClienteMouseClicked
+
+    private void JBInsertarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarEmpleadoMouseClicked
+        String[] parts = jComboBoxSucursalEmpleado.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.Empleado(idSucursal,nombre,NSS, celular, telefono, domicilio, email)"
+                    + " VALUES(" + parts[0] + 
+                    ",'" + JTNombreEmpleado.getText() + "','" + 
+                    JTNSSEmpleado.getText() + "','" + 
+                    JTCelularEmpleado.getText() +  "','" +
+                    JTTelefonoEmpleado.getText() +  "','" + 
+                    JTDomicilioEmpleado.getText() +  "','" + 
+                    JTEmailEmpleado.getText() + "')";
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarEmpleadoMouseClicked
+
+    private void JBEliminarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarEmpleadoMouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.Empleado "
+                    + "WHERE idEmpleado=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarEmpleadoMouseClicked
+
+    private void JBModificarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarEmpleadoMouseClicked
+        String[] parts = jComboBoxSucursalEmpleado.getSelectedItem().toString().split("-");
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.Empleado SET " + 
+                    "idSucursal="+ parts[0] + 
+                    ",nombre='"+JTNombreEmpleado.getText() + 
+                    "',NSS='" + JTNSSEmpleado.getText() + 
+                    "',celular='" + JTCelularEmpleado.getText() + 
+                    "',telefono='" + JTTelefonoEmpleado.getText() + 
+                    "',domicilio='" + JTDomicilioEmpleado.getText() + 
+                    "',email='" + JTEmailEmpleado.getText() + "' " +                    
+                    "WHERE idEmpleado=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarEmpleadoMouseClicked
+
+    private void JTEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTEmpleadoMouseClicked
+        int index = JTEmpleado.getSelectedRow();
+        TableModel model = JTEmpleado.getModel();
+                
+        idSeleccionado =model.getValueAt(index, 0).toString();
+        jComboBoxSucursalEmpleado.setSelectedItem(model.getValueAt(index, 1).toString());
+        JTNombreEmpleado.setText(model.getValueAt(index, 2).toString());
+        JTNSSEmpleado.setText(model.getValueAt(index, 3).toString());
+        JTCelularEmpleado.setText(model.getValueAt(index, 4).toString());
+        JTTelefonoEmpleado.setText(model.getValueAt(index, 5).toString());
+        JTDomicilioEmpleado.setText(model.getValueAt(index, 6).toString());
+        JTEmailEmpleado.setText(model.getValueAt(index, 7).toString());
+    }//GEN-LAST:event_JTEmpleadoMouseClicked
+
+    private void JTGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTGerenteMouseClicked
+        int index = JTGerente.getSelectedRow();
+        TableModel model = JTGerente.getModel();
+        jComboBoxIdEmpleadoGerente.setSelectedItem(model.getValueAt(index, 0).toString());
+        String[] parts = jComboBoxIdEmpleadoGerente.getSelectedItem().toString().split("-");
+                
+        idSeleccionado = parts[0];
+        jComboBoxIdEmpleadoGerente.setSelectedItem(model.getValueAt(index, 0).toString());
+        JTSueldoFijoGerente.setText(model.getValueAt(index, 1).toString());
+    }//GEN-LAST:event_JTGerenteMouseClicked
+
+    private void JBInsertarGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarGerenteMouseClicked
+        String[] parts = jComboBoxIdEmpleadoGerente.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.Gerente(idEmpleado,sueldoFijo)"
+                    + " VALUES(" + parts[0] + 
+                    "," + JTSueldoFijoGerente.getText() + ")";
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarGerenteMouseClicked
+
+    private void JBEliminarGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarGerenteMouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.Gerente "
+                    + "WHERE idEmpleado=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarGerenteMouseClicked
+
+    private void JBModificarGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarGerenteMouseClicked
+        String[] parts = jComboBoxIdEmpleadoGerente.getSelectedItem().toString().split("-");
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.Gerente SET " + 
+                    "idEmpleado="+ parts[0] + 
+                    ",sueldoFijo=" + JTSueldoFijoGerente.getText() + " " +                    
+                    "WHERE idEmpleado=" + idSeleccionado;
+            
+            st.executeUpdate(sql);
+            
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarGerenteMouseClicked
+
+    private void JBInsertarRepartidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarRepartidorMouseClicked
+        String[] parts = jComboBoxIdEmpleadoRepartidor.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.Repartidor(idEmpleado,pago)"
+                    + " VALUES(" + parts[0] + 
+                    "," + JTPagoRepartidor.getText() + ")";
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarRepartidorMouseClicked
+
+    private void JBEliminarRepartidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarRepartidorMouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.Repartidor "
+                    + "WHERE idEmpleado=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();  
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarRepartidorMouseClicked
+
+    private void JBModificarRepartidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarRepartidorMouseClicked
+        String[] parts = jComboBoxIdEmpleadoRepartidor.getSelectedItem().toString().split("-");
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.Repartidor SET " + 
+                    "idEmpleado="+ parts[0] + 
+                    ",pago=" + JTPagoRepartidor.getText() + " " +                    
+                    "WHERE idEmpleado=" + idSeleccionado;
+            
+            st.executeUpdate(sql);
+            
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarRepartidorMouseClicked
+
+    private void JTRepartidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTRepartidorMouseClicked
+        int index = JTRepartidor.getSelectedRow();
+        TableModel model = JTRepartidor.getModel();
+        jComboBoxIdEmpleadoRepartidor.setSelectedItem(model.getValueAt(index, 0).toString());
+        String[] parts = jComboBoxIdEmpleadoRepartidor.getSelectedItem().toString().split("-");
+                
+        idSeleccionado = parts[0];
+        jComboBoxIdEmpleadoRepartidor.setSelectedItem(model.getValueAt(index, 0).toString());
+        JTPagoRepartidor.setText(model.getValueAt(index, 1).toString());
+    }//GEN-LAST:event_JTRepartidorMouseClicked
+
+    private void JTCocineroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTCocineroMouseClicked
+        int index = JTCocinero.getSelectedRow();
+        TableModel model = JTCocinero.getModel();
+        jComboBoxIdEmpleadoCocinero.setSelectedItem(model.getValueAt(index, 0).toString());
+        String[] parts = jComboBoxIdEmpleadoCocinero.getSelectedItem().toString().split("-");
+                
+        idSeleccionado = parts[0];
+        jComboBoxIdEmpleadoCocinero.setSelectedItem(model.getValueAt(index, 0).toString());
+        JTPlatillosCocinero.setText(model.getValueAt(index, 1).toString());
+        JTHorasCocinero.setText(model.getValueAt(index, 2).toString());
+        JTPagoCocinero.setText(model.getValueAt(index, 3).toString());
+    }//GEN-LAST:event_JTCocineroMouseClicked
+
+    private void JBModificarCocineroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarCocineroMouseClicked
+        String[] parts = jComboBoxIdEmpleadoCocinero.getSelectedItem().toString().split("-");
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.Cocinero SET " + 
+                    "idEmpleado="+ parts[0] + 
+                    ",cantidadPlatillos=" + JTPlatillosCocinero.getText() + " " + 
+                    ",horasContrato=" + JTHorasCocinero.getText() + " " +
+                    ",pago=" + JTPagoCocinero.getText() + " " +
+                    "WHERE idEmpleado=" + idSeleccionado;
+            
+            st.executeUpdate(sql);
+            
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarCocineroMouseClicked
+
+    private void JBEliminarCocineroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarCocineroMouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.Cocinero "
+                    + "WHERE idEmpleado=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();  
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarCocineroMouseClicked
+
+    private void JBInsertarCocineroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarCocineroMouseClicked
+        String[] parts = jComboBoxIdEmpleadoCocinero.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.Cocinero(idEmpleado,cantidadPlatillos, horasContrato, pago)"
+                    + " VALUES(" + parts[0] + 
+                    "," + JTPlatillosCocinero.getText() +
+                    "," + JTHorasCocinero.getText() +
+                    "," + JTPagoCocinero.getText() +")";
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarCocineroMouseClicked
+
+    private void JTPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTPedidoMouseClicked
+        int index = JTPedido.getSelectedRow();
+        TableModel model = JTPedido.getModel();
+        jComboBoxSucursalPedido.setSelectedItem(model.getValueAt(index, 1).toString());
+        jComboBoxlEmpleadoPedido.setSelectedItem(model.getValueAt(index, 2).toString());
+        jComboBoxClientePedido.setSelectedItem(model.getValueAt(index, 3).toString());
+        
+        String[] partsSucursal = jComboBoxSucursalPedido.getSelectedItem().toString().split("-");
+        String[] partsEmpleado = jComboBoxlEmpleadoPedido.getSelectedItem().toString().split("-");
+        String[] partsCliente = jComboBoxClientePedido.getSelectedItem().toString().split("-");
+                
+        idSeleccionado = model.getValueAt(index, 0).toString();
+        jComboBoxIdEmpleadoCocinero.setSelectedItem(model.getValueAt(index, 0).toString());        
+        
+        JTPagoCocinero.setText(model.getValueAt(index, 3).toString());        
+        
+        JTFechaPedido.setText(model.getValueAt(index, 4).toString());
+        JTHoraInicioPedido.setText(model.getValueAt(index, 5).toString());
+        JTHoraDeseadaPedido.setText(model.getValueAt(index, 6).toString());
+        JTComisionPedido.setText(model.getValueAt(index, 7).toString());
+    }//GEN-LAST:event_JTPedidoMouseClicked
+
+    private void JBModificarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarPedidoMouseClicked
+        String[] partsSucursal = jComboBoxSucursalPedido.getSelectedItem().toString().split("-");
+        String[] partsEmpleado = jComboBoxlEmpleadoPedido.getSelectedItem().toString().split("-");
+        String[] partsCliente = jComboBoxClientePedido.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.Pedido SET " + 
+                    "idSucursal="+ partsSucursal[0] + 
+                    ",idEmpleado="+ partsEmpleado[0] + 
+                    ",idCliente="+ partsCliente[0] + 
+                    ",fechaPedido='"+JTFechaPedido.getText() + 
+                    "',horaPedido='" + JTHoraInicioPedido.getText() + 
+                    "',horaDeseada='" + JTHoraDeseadaPedido.getText() + 
+                    "',comision=" + JTComisionPedido.getText() +
+                    " " +                    
+                    "WHERE idPedido=" + idSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarPedidoMouseClicked
+
+    private void JBEliminarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarPedidoMouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.Pedido "
+                    + "WHERE idPedido=" + idSeleccionado;
+            
+            st.executeUpdate(sql);
+            st.close();
+            
+            llenaTabla();  
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarPedidoMouseClicked
+
+    private void JBInsertarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarPedidoMouseClicked
+        String[] partsSucursal = jComboBoxSucursalPedido.getSelectedItem().toString().split("-");
+        String[] partsEmpleado = jComboBoxlEmpleadoPedido.getSelectedItem().toString().split("-");
+        String[] partsCliente = jComboBoxClientePedido.getSelectedItem().toString().split("-");
+        int cero =0;
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.Pedido(idSucursal,idEmpleado, idCliente, fechaPedido, horaPedido, horaDeseada, comision, total)"
+                    + " VALUES(" + partsSucursal[0] + 
+                    "," + partsEmpleado[0] + "," + 
+                    partsCliente[0] + ",'" + 
+                    JTFechaPedido.getText() +  "','" +
+                    JTHoraInicioPedido.getText() +  "','" + 
+                    JTHoraDeseadaPedido.getText() +  "','" + 
+                    JTComisionPedido.getText() + "'," +
+                    cero + ")";
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarPedidoMouseClicked
+
+    private void JTDetallePedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTDetallePedidoMouseClicked
+        int index = JTDetallePedido.getSelectedRow();
+        TableModel model = JTDetallePedido.getModel();        
+        
+        jComboBoxPedidoDetalle.setSelectedItem(model.getValueAt(index, 0).toString());
+        jComboBoxlPlatilloPedido.setSelectedItem(model.getValueAt(index, 1).toString());
+        
+        String partsPedido = jComboBoxPedidoDetalle.getSelectedItem().toString();
+        String[] partsPlatillo = jComboBoxlPlatilloPedido.getSelectedItem().toString().split("-");
+                
+        idSeleccionado = model.getValueAt(index, 0).toString();
+        idPlatilloSeleccionado =partsPlatillo[0];              
+        
+        jComboBoxPedidoDetalle.setSelectedItem(model.getValueAt(index, 0).toString()); 
+        jComboBoxlPlatilloPedido.setSelectedItem(model.getValueAt(index, 1).toString());
+        
+        JTCantProdDetalle.setText(model.getValueAt(index, 2).toString());
+    }//GEN-LAST:event_JTDetallePedidoMouseClicked
+
+    private void JBInsertarPedido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInsertarPedido1MouseClicked
+        String partsPedido = jComboBoxPedidoDetalle.getSelectedItem().toString();
+        String[] partsPlatillo = jComboBoxlPlatilloPedido.getSelectedItem().toString().split("-");
+        
+        int cero =0;
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "INSERT INTO RESTAURANTBD.DetallePedido(idPedido,idPlatillo, cantidadProductos,subtotal)"
+                    + " VALUES(" + partsPedido + 
+                    "," + partsPlatillo[0] +
+                    "," + JTCantProdDetalle.getText() + "," +
+                    cero + ")";
+            st.executeUpdate(sql);            
+            st.close();
+            llenaTabla();            
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + e);
+        }
+    }//GEN-LAST:event_JBInsertarPedido1MouseClicked
+
+    private void JBEliminarPedido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBEliminarPedido1MouseClicked
+        try{
+            Statement st = conexion.createStatement();
+            String sql = "DELETE FROM RESTAURANTBD.DetallePedido "
+                    + "WHERE idPedido=" + idSeleccionado + " AND idPlatillo = " 
+                    + idPlatilloSeleccionado;       
+            
+            st.executeUpdate(sql);
+            st.close();
+            
+            llenaTabla();  
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al eliminar " + e);
+        }
+    }//GEN-LAST:event_JBEliminarPedido1MouseClicked
+
+    private void JBModificarPedido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBModificarPedido1MouseClicked
+        String partsPedido = jComboBoxPedidoDetalle.getSelectedItem().toString();
+        String[] partsPlatillo = jComboBoxlPlatilloPedido.getSelectedItem().toString().split("-");
+        
+        try{
+            Statement st = conexion.createStatement();
+            
+            String sql = "UPDATE RESTAURANTBD.DetallePedido SET " + 
+                    "idPedido="+ partsPedido + 
+                    ",idPlatillo="+ partsPlatillo[0] + 
+                    ",cantidadProductos="+ JTCantProdDetalle.getText() + 
+                    ",subtotal= 0 " +
+                    " " +                    
+                    "WHERE idPedido=" + idSeleccionado + " AND idPlatillo = " 
+                    + idPlatilloSeleccionado;
+            st.executeUpdate(sql);
+            st.close();
+            llenaTabla();             
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al modificar " + e);
+        }
+    }//GEN-LAST:event_JBModificarPedido1MouseClicked
+
+    private void JTCantidadPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTCantidadPedidosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTCantidadPedidosMouseClicked
+
+    private void jButtonReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporte1ActionPerformed
+        modeloReporte1.setRowCount(0);
+        String datos22[] = new String[2];  
+        
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs;
+            if(jComboBoxReporte1.getSelectedItem().equals("Más ventas"))
+            {
+                rs = at.executeQuery("SELECT RESTAURANTBD.Sucursal.nombre, COUNT(RESTAURANTBD.Pedido.idPedido) AS Cantidad FROM RESTAURANTBD.Pedido INNER JOIN RESTAURANTBD.Sucursal\n" +
+                                                "ON RESTAURANTBD.Sucursal.idSucursal= RESTAURANTBD.Pedido.idSucursal\n" +
+                                                "GROUP BY RESTAURANTBD.Sucursal.idSucursal\n" +
+                                                "ORDER BY COUNT(RESTAURANTBD.Pedido.idPedido) DESC");
+            }else
+            {
+                rs = at.executeQuery("SELECT RESTAURANTBD.Sucursal.nombre, COUNT(RESTAURANTBD.Pedido.idPedido) AS Cantidad FROM RESTAURANTBD.Pedido INNER JOIN RESTAURANTBD.Sucursal\n" +
+                                                "ON RESTAURANTBD.Sucursal.idSucursal= RESTAURANTBD.Pedido.idSucursal\n" +
+                                                "GROUP BY RESTAURANTBD.Sucursal.idSucursal\n" +
+                                                "ORDER BY COUNT(RESTAURANTBD.Pedido.idPedido) ASC");
+            }
+            
+            
+            while (rs.next()) {
+                datos22[0] = rs.getString("nombre");
+                datos22[1] = rs.getString("Cantidad");
+                modeloReporte1.addRow(datos22);
+            }
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información");
+        }
+    }//GEN-LAST:event_jButtonReporte1ActionPerformed
+
+    private void jButtonReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporte2ActionPerformed
+        
+        modeloReporte2.setRowCount(0);
+        String[] partsPlatillo = jComboBoxReporte2.getSelectedItem().toString().split("-");
+        String datos22[] = new String[2];     
+        try
+        {
+            Statement at = conexion.createStatement();
+            ResultSet rs;
+            rs = at.executeQuery("SELECT RESTAURANTBD.Platillo.Nombre,COUNT(RESTAURANTBD.Platillo.Nombre) AS Cantidad FROM RESTAURANTBD.DetallePedido INNER JOIN RESTAURANTBD.Platillo\n" +
+                                "ON RESTAURANTBD.DetallePedido.idPlatillo = RESTAURANTBD.Platillo.idPlatillo\n" +
+                                "WHERE RESTAURANTBD.Platillo.Nombre = '"+ partsPlatillo[1] +"'\n" +
+                                "GROUP BY RESTAURANTBD.Platillo.Nombre");
+                        
+            while (rs.next()) {
+                datos22[0] = rs.getString("Nombre");
+                datos22[1] = rs.getString("Cantidad");
+                modeloReporte2.addRow(datos22);
+            }
+            rs.close();
+            at.close();
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información");
+        }        
+    }//GEN-LAST:event_jButtonReporte2ActionPerformed
+
+    private void JTReporte2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTReporte2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTReporte2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -794,7 +2279,7 @@ public class Restaurante extends javax.swing.JFrame {
         });
     }
     
-    private void estableceConexion() {
+    public static void estableceConexion() {
         try
         {
             conexion = DriverManager.getConnection(
@@ -804,7 +2289,7 @@ public class Restaurante extends javax.swing.JFrame {
         }                
     }
     
-    private void modeloTabla() { 
+    public static void modeloTabla() { 
         modeloPlatillo.addColumn("Id Platillo");
         modeloPlatillo.addColumn("Nombre");
         modeloPlatillo.addColumn("Descripción");
@@ -831,298 +2316,741 @@ public class Restaurante extends javax.swing.JFrame {
         modeloCliente.addColumn("Teléfono");
         modeloCliente.addColumn("Email");
         JTCliente.setModel(modeloCliente);
+        
+        modeloEmpleado.addColumn("Id Empleado");
+        modeloEmpleado.addColumn("Id Sucursal");
+        modeloEmpleado.addColumn("Nombre");
+        modeloEmpleado.addColumn("NSS");
+        modeloEmpleado.addColumn("Celular");
+        modeloEmpleado.addColumn("Teléfono");
+        modeloEmpleado.addColumn("Domicilio");
+        modeloEmpleado.addColumn("Email");
+        JTEmpleado.setModel(modeloEmpleado);
+        
+        modeloGerente.addColumn("Id Empleado - Id Sucursal - Nombre del Empleado");
+        modeloGerente.addColumn("Sueldo fijo");
+        JTGerente.setModel(modeloGerente);
+        
+        modeloRepartidor.addColumn("Id Empleado - Id Sucursal - Nombre del Empleado");
+        modeloRepartidor.addColumn("Pago");
+        JTRepartidor.setModel(modeloRepartidor);
+        
+        modeloCocinero.addColumn("Id Empleado - Id Sucursal - Nombre del Empleado");
+        modeloCocinero.addColumn("Cantidad de platillos");
+        modeloCocinero.addColumn("Horas de contrato");
+        modeloCocinero.addColumn("Pago");
+        JTCocinero.setModel(modeloCocinero);
+        
+        modeloPedido.addColumn("Id Pedido");
+        modeloPedido.addColumn("Id Sucursal");
+        modeloPedido.addColumn("Id Empleado");
+        modeloPedido.addColumn("Id Cliente");
+        modeloPedido.addColumn("Fecha de pedido");
+        modeloPedido.addColumn("Hora de pedido");
+        modeloPedido.addColumn("Hora deseada");
+        modeloPedido.addColumn("Comisión");
+        modeloPedido.addColumn("Total");
+        JTPedido.setModel(modeloPedido);
+        
+        modeloDetallePedido.addColumn("Id Pedido");
+        modeloDetallePedido.addColumn("Id Platillo");
+        modeloDetallePedido.addColumn("Cantidad de Productos");
+        modeloDetallePedido.addColumn("Subtotal");
+        JTDetallePedido.setModel(modeloDetallePedido);
+        
+        modeloReporte1.addColumn("Sucursal");
+        modeloReporte1.addColumn("Cantidad de Pedidos");  
+        JTCantidadPedidos.setModel(modeloReporte1);
+        
+        modeloReporte2.addColumn("Nombre");
+        modeloReporte2.addColumn("Cantidad de Pedidos");  
+        JTReporte2.setModel(modeloReporte2);
     }
 
-    private void llenaTabla(int tablaCargar) {
-        switch(tablaCargar)
-        {
-            case 1:
-                JTNombrePlatillo.setText("");
-                JTDescripcionPlatillo.setText("");
-                JTCostoPlatillo.setText("");
+    public static void llenaTabla() {
+        if(user.equals("user_cliente")){
+            jTabbedPaneSucusal.setEnabledAt(0,false);
+            jTabbedPaneSucusal.setEnabledAt(1,false);
+            jTabbedPaneSucusal.setEnabledAt(3,false);
+            jTabbedPaneSucusal.setEnabledAt(4,false);
+            jTabbedPaneSucusal.setEnabledAt(5,false);
+            jTabbedPaneSucusal.setEnabledAt(6,false);
+            jTabbedPaneSucusal.setEnabledAt(7,false);
+            jTabbedPaneSucusal.setEnabledAt(10,false);
+            jTabbedPaneSucusal.setEnabledAt(11,false);
+        }
+        
+        if(user.equals("user_repartidor")){
+            jTabbedPaneSucusal.setEnabledAt(0,false);
+            jTabbedPaneSucusal.setEnabledAt(1,false);
+            jTabbedPaneSucusal.setEnabledAt(3,false);
+            jTabbedPaneSucusal.setEnabledAt(4,false);
+            jTabbedPaneSucusal.setEnabledAt(5,false);
+            jTabbedPaneSucusal.setEnabledAt(6,false);
+            jTabbedPaneSucusal.setEnabledAt(7,false);
+            jTabbedPaneSucusal.setEnabledAt(8,false);
+            jTabbedPaneSucusal.setEnabledAt(9,false);
+        }  
+        
+        JTNombrePlatillo.setText("");
+        JTDescripcionPlatillo.setText("");
+        JTCostoPlatillo.setText("");
 
-                modeloPlatillo.setRowCount(0);
-                String datos1[] = new String[4];
+        modeloPlatillo.setRowCount(0);
+        String datos11[] = new String[4];
 
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.Platillo");
-                    while(rs.next())
-                    {
-                        datos1[0] = rs.getString("idPlatillo");
-                        datos1[1] = rs.getString("nombre");
-                        datos1[2] = rs.getString("descripcion");
-                        datos1[3] = rs.getString("costo");
-                        modeloPlatillo.addRow(datos1);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT *FROM RESTAURANTBD.Platillo");
+            while (rs.next()) {
+                datos11[0] = rs.getString("idPlatillo");
+                datos11[1] = rs.getString("nombre");
+                datos11[2] = rs.getString("descripcion");
+                datos11[3] = rs.getString("costo");
+                modeloPlatillo.addRow(datos11);
+            }
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información");
+        }
+        
+        
+        JTNombreSucursal.setText("");
+        JTDireccionSucursal.setText("");
+
+        modeloSucursal.setRowCount(0);
+        String datos22[] = new String[3];
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT *FROM RESTAURANTBD.Sucursal");
+            while (rs.next()) {
+                datos22[0] = rs.getString("idSucursal");
+                datos22[1] = rs.getString("nombre");
+                datos22[2] = rs.getString("direccion");
+                modeloSucursal.addRow(datos22);
+            }
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información");
+        }
+
+        if(!user.equals("user_cliente")){
+            JTNombreZona.setText("");
+            JTCPZona.setText("");
+            JTComisionZona.setText("");
+
+            modeloZonaDomicilio.setRowCount(0);
+            String datos33[] = new String[4];
+
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT *FROM RESTAURANTBD.ZonaDomicilio");
+                while (rs.next()) {
+                    datos33[0] = rs.getString("idZona");
+                    datos33[1] = rs.getString("nombre");
+                    datos33[2] = rs.getString("codigoPostal");
+                    datos33[3] = rs.getString("comisionCobro");
+                    modeloZonaDomicilio.addRow(datos33);
                 }
-                break;
-            case 2:
-                JTNombreSucursal.setText("");
-                JTDireccionSucursal.setText("");
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información");
+            }
+        }
+        
 
-                modeloSucursal.setRowCount(0);
-                String datos2[] = new String[3];
+        if(!user.equals("user_cliente")){
+            System.out.println("Entro al cliente");
+            JTNombreCliente.setText("");
+            JTDomicilioCliente.setText("");
+            JTDireccionCliente.setText("");
+            JTTelefonoCliente.setText("");
+            JTEmailCliente.setText("");
+            jComboBoxZonaCliente.removeAllItems();
+            modeloCliente.setRowCount(0);
+            String datos44[] = new String[7];
 
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.Sucursal");
-                    while(rs.next())
-                    {
-                        datos2[0] = rs.getString("idSucursal");
-                        datos2[1] = rs.getString("nombre");
-                        datos2[2] = rs.getString("direccion");
-                        modeloSucursal.addRow(datos2);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT idCliente, RESTAURANTBD.Cliente.idZona, "
+                        + "CONCAT(RESTAURANTBD.ZonaDomicilio.idZona, '-', "
+                        + "RESTAURANTBD.ZonaDomicilio.nombre, '-', RESTAURANTBD.ZonaDomicilio.codigoPostal) AS Zona, "
+                        + "RESTAURANTBD.Cliente.nombre, domicilio, direccion, telefono, email "
+                        + "FROM RESTAURANTBD.Cliente INNER JOIN RESTAURANTBD.ZonaDomicilio "
+                        + "ON RESTAURANTBD.Cliente.idZona = RESTAURANTBD.ZonaDomicilio.idZona");
+
+                while (rs.next()) {
+                    datos44[0] = rs.getString("idCliente");
+                    datos44[1] = rs.getString("Zona");
+                    datos44[2] = rs.getString("nombre");
+                    datos44[3] = rs.getString("domicilio");
+                    datos44[4] = rs.getString("direccion");
+                    datos44[5] = rs.getString("telefono");
+                    datos44[6] = rs.getString("email");
+                    modeloCliente.addRow(datos44);
                 }
-                break;                
-            case 3:
-                JTNombreZona.setText("");
-                JTCPZona.setText("");
-                JTComisionZona.setText("");
 
-                modeloZonaDomicilio.setRowCount(0);
-                String datos3[] = new String[4];
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
 
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.ZonaDomicilio");
-                    while(rs.next())
-                    {
-                        datos3[0] = rs.getString("idZona");
-                        datos3[1] = rs.getString("nombre");
-                        datos3[2] = rs.getString("codigoPostal");
-                        datos3[3] = rs.getString("comisionCobro");
-                        modeloZonaDomicilio.addRow(datos3);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT CONCAT(idZona, '-',nombre,'-',codigoPostal) AS Zona FROM RESTAURANTBD.ZonaDomicilio");
+
+                while (rs.next()) {
+                    jComboBoxZonaCliente.addItem(rs.getString("Zona"));
                 }
-                break;
-            case 4:
-                JTZonaCliente.setText("");
-                JTNombreCliente.setText("");
-                JTDomicilioCliente.setText("");
-                JTDireccionCliente.setText("");
-                JTTelefonoCliente.setText("");
-                JTEmailCliente.setText("");
 
-                modeloCliente.setRowCount(0);
-                String datos4[] = new String[7];
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
+        }
+        
 
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT idCliente, RESTAURANTBD.Cliente.idZona, " +
-                                                    "CONCAT(RESTAURANTBD.ZonaDomicilio.idZona, '-', "
-                                                    + "RESTAURANTBD.ZonaDomicilio.nombre, '-', RESTAURANTBD.ZonaDomicilio.codigoPostal) AS Zona, " +
-                                                    "RESTAURANTBD.Cliente.nombre, domicilio, direccion, telefono, email " +
-                                                    "FROM RESTAURANTBD.Cliente INNER JOIN RESTAURANTBD.ZonaDomicilio " +
-                                                    "ON RESTAURANTBD.Cliente.idZona = RESTAURANTBD.ZonaDomicilio.idZona");
-                    while(rs.next())
-                    {
-                        datos4[0] = rs.getString("idCliente");
-                        datos4[1] = rs.getString("Zona");
-                        datos4[2] = rs.getString("nombre");
-                        datos4[3] = rs.getString("domicilio");
-                        datos4[4] = rs.getString("direccion");
-                        datos4[5] = rs.getString("telefono");
-                        datos4[6] = rs.getString("email");
-                        modeloCliente.addRow(datos4);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
+        if(!user.equals("user_cliente")){
+            JTNombreEmpleado.setText("");
+            JTNSSEmpleado.setText("");
+            JTCelularEmpleado.setText("");
+            JTTelefonoEmpleado.setText("");
+            JTDomicilioEmpleado.setText("");
+            JTEmailEmpleado.setText("");
+            jComboBoxSucursalEmpleado.removeAllItems();
+
+            modeloEmpleado.setRowCount(0);
+            String datos55[] = new String[8];
+
+            try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT idEmpleado, RESTAURANTBD.Empleado.idSucursal, CONCAT(RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Sucursal.nombre) AS Sucursal, "
+                        + "RESTAURANTBD.Empleado.nombre, NSS, celular, telefono, domicilio, email "
+                        + "FROM RESTAURANTBD.Empleado INNER JOIN RESTAURANTBD.Sucursal "
+                        + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+            while (rs.next()) {
+                    datos55[0] = rs.getString("idEmpleado");
+                    datos55[1] = rs.getString("Sucursal");
+                    datos55[2] = rs.getString("nombre");
+                    datos55[3] = rs.getString("NSS");
+                    datos55[4] = rs.getString("celular");
+                    datos55[5] = rs.getString("telefono");
+                    datos55[6] = rs.getString("domicilio");
+                    datos55[7] = rs.getString("email");
+                    modeloEmpleado.addRow(datos55);
+            }
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información");
+            }
+
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT CONCAT(idSucursal, '-',nombre) AS Sucursal FROM RESTAURANTBD.Sucursal");
+
+                while (rs.next()) {
+                    jComboBoxSucursalEmpleado.addItem(rs.getString("Sucursal"));
                 }
-                break;
-            case 0:
-                JTNombrePlatillo.setText("");
-                JTDescripcionPlatillo.setText("");
-                JTCostoPlatillo.setText("");
 
-                modeloPlatillo.setRowCount(0);
-                String datos11[] = new String[4];
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
+        }
+        
+        
+        
+        if(!user.equals("user_cliente")){
+            JTSueldoFijoGerente.setText("");
+            jComboBoxIdEmpleadoGerente.removeAllItems();
 
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.Platillo");
-                    while(rs.next())
-                    {
-                        datos11[0] = rs.getString("idPlatillo");
-                        datos11[1] = rs.getString("nombre");
-                        datos11[2] = rs.getString("descripcion");
-                        datos11[3] = rs.getString("costo");
-                        modeloPlatillo.addRow(datos11);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
+            modeloGerente.setRowCount(0);
+            String datos66[] = new String[2];
+
+            try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado, "
+                    + "sueldoFijo "
+                    + "FROM RESTAURANTBD.Gerente"
+                    + " INNER JOIN RESTAURANTBD.Empleado "
+                    + "ON RESTAURANTBD.Gerente.idEmpleado = RESTAURANTBD.Empleado.idEmpleado"
+                    + " INNER JOIN RESTAURANTBD.Sucursal "
+                    + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+            while (rs.next()) {
+                datos66[0] = rs.getString("idEmpleado");
+                datos66[1] = rs.getString("sueldoFijo");
+                modeloGerente.addRow(datos66);
+            }
+            rs.close();
+            at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información");
+            }
+
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado FROM RESTAURANTBD.Empleado "
+                        + " INNER JOIN RESTAURANTBD.Sucursal "
+                        + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+
+                while (rs.next()) {
+                    jComboBoxIdEmpleadoGerente.addItem(rs.getString("idEmpleado"));
                 }
+
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
+        }
+        
+
+        
+        if(!user.equals("user_cliente")){
+            JTPagoRepartidor.setText("");
+            jComboBoxIdEmpleadoRepartidor.removeAllItems();
+
+            modeloRepartidor.setRowCount(0);
+            String datos77[] = new String[2];
+
+            try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado, "
+                    + "pago "
+                    + "FROM RESTAURANTBD.Repartidor"
+                    + " INNER JOIN RESTAURANTBD.Empleado "
+                    + "ON RESTAURANTBD.Repartidor.idEmpleado = RESTAURANTBD.Empleado.idEmpleado"
+                    + " INNER JOIN RESTAURANTBD.Sucursal "
+                    + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+            while (rs.next()) {
+                datos77[0] = rs.getString("idEmpleado");
+                datos77[1] = rs.getString("pago");
+                modeloRepartidor.addRow(datos77);
+            }
+            rs.close();
+            at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información");
+            }
+
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado FROM RESTAURANTBD.Empleado "
+                        + " INNER JOIN RESTAURANTBD.Sucursal "
+                        + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+
+                while (rs.next()) {
+                    jComboBoxIdEmpleadoRepartidor.addItem(rs.getString("idEmpleado"));
+                }
+
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
+        }
+        
+        
+        if(!user.equals("user_cliente")){
+            JTPlatillosCocinero.setText("");
+            JTHorasCocinero.setText("");
+            JTPagoCocinero.setText("");
+            jComboBoxIdEmpleadoCocinero.removeAllItems();
+
+            modeloCocinero.setRowCount(0);
+            String datos88[] = new String[4];
+
+            try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado, "
+                    + "cantidadPlatillos, horasContrato, pago "
+                    + "FROM RESTAURANTBD.Cocinero"
+                    + " INNER JOIN RESTAURANTBD.Empleado "
+                    + "ON RESTAURANTBD.Cocinero.idEmpleado = RESTAURANTBD.Empleado.idEmpleado"
+                    + " INNER JOIN RESTAURANTBD.Sucursal "
+                    + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+            while (rs.next()) {
+                datos88[0] = rs.getString("idEmpleado");
+                datos88[1] = rs.getString("cantidadPlatillos");
+                datos88[2] = rs.getString("horasContrato");
+                datos88[3] = rs.getString("pago");
+                modeloCocinero.addRow(datos88);
+            }
+            rs.close();
+            at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información");
+            }
+
+            try {
+                Statement at = conexion.createStatement();
+                ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado FROM RESTAURANTBD.Empleado "
+                        + " INNER JOIN RESTAURANTBD.Sucursal "
+                        + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+
+                while (rs.next()) {
+                    jComboBoxIdEmpleadoCocinero.addItem(rs.getString("idEmpleado"));
+                }
+
+                rs.close();
+                at.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "No se pudo actualizar la información " + e.toString());
+            }
+        }
+
+        
+
+        jComboBoxSucursalPedido.removeAllItems();
+        jComboBoxlEmpleadoPedido.removeAllItems();
+        jComboBoxClientePedido.removeAllItems();
+        JTFechaPedido.setText("");
+        JTHoraInicioPedido.setText("");
+        JTHoraDeseadaPedido.setText("");
+        JTComisionPedido.setText("");
+
+        modeloPedido.setRowCount(0);
+        String datos99[] = new String[9];
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT idPedido, "
+                    + "CONCAT(RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Sucursal.nombre) AS idSucursal, "
+                    + "CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado, "
+                    + "CONCAT(RESTAURANTBD.Cliente.idCliente, '-', RESTAURANTBD.Cliente.nombre, '-', RESTAURANTBD.Cliente.idZona) AS idCliente, "
+                    + "fechaPedido, horaPedido, horaDeseada, comision, total "
+                    + "FROM RESTAURANTBD.Pedido"
+                    + " INNER JOIN RESTAURANTBD.Cliente "
+                    + "ON RESTAURANTBD.Pedido.IdCliente = RESTAURANTBD.Cliente.IdCliente"
+                    + " INNER JOIN RESTAURANTBD.Empleado "
+                    + "ON RESTAURANTBD.Pedido.idEmpleado = RESTAURANTBD.Empleado.idEmpleado"
+                    + " INNER JOIN RESTAURANTBD.Sucursal "
+                    + "ON RESTAURANTBD.Pedido.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+
+            while (rs.next()) {
+                datos99[0] = rs.getString("idPedido");
+                datos99[1] = rs.getString("idSucursal");
+                datos99[2] = rs.getString("idEmpleado");
+                datos99[3] = rs.getString("idCliente");
+                datos99[4] = rs.getString("fechaPedido");
+                datos99[5] = rs.getString("horaPedido");
+                datos99[6] = rs.getString("horaDeseada");
+                datos99[7] = rs.getString("comision");
+                datos99[8] = rs.getString("total");
+                modeloPedido.addRow(datos99);
+            }
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información del pedido " + e.toString());
+        }
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Sucursal.nombre) AS idSucursal "
+                    + "FROM RESTAURANTBD.Sucursal");
+
+            while (rs.next()) {
+                jComboBoxSucursalPedido.addItem(rs.getString("idSucursal"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de IdSucursal " + e.toString());
+        }
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Empleado.idEmpleado, '-', RESTAURANTBD.Sucursal.idSucursal, '-', RESTAURANTBD.Empleado.nombre) AS idEmpleado "
+                    + "FROM RESTAURANTBD.Empleado"
+                    + " INNER JOIN RESTAURANTBD.Sucursal "
+                    + "ON RESTAURANTBD.Empleado.idSucursal = RESTAURANTBD.Sucursal.idSucursal");
+
+            while (rs.next()) {
+                jComboBoxlEmpleadoPedido.addItem(rs.getString("idEmpleado"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de idEmpleado " + e.toString());
+        }
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Cliente.idCliente, '-', RESTAURANTBD.Cliente.nombre, '-', RESTAURANTBD.Cliente.idZona) AS idCliente "
+                    + "FROM RESTAURANTBD.Cliente");
+
+            while (rs.next()) {
+                jComboBoxClientePedido.addItem(rs.getString("idCliente"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de idCliente " + e.toString());
+        }
+
+        jComboBoxPedidoDetalle.removeAllItems();
+        jComboBoxlPlatilloPedido.removeAllItems();
+        JTCantProdDetalle.setText("");
+
+        modeloDetallePedido.setRowCount(0);
+        String datos10[] = new String[4];
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT RESTAURANTBD.DetallePedido.IdPedido, "
+                    + "CONCAT(RESTAURANTBD.Platillo.idPlatillo, '-', RESTAURANTBD.Platillo.descripcion) AS idPlatillo, "
+                    + "cantidadProductos, subtotal "
+                    + "FROM RESTAURANTBD.DetallePedido"
+                    + " INNER JOIN RESTAURANTBD.Platillo "
+                    + "ON RESTAURANTBD.DetallePedido.IdPlatillo = RESTAURANTBD.Platillo.IdPlatillo");
+
+            while (rs.next()) {
+                datos10[0] = rs.getString("idPedido");
+                datos10[1] = rs.getString("idPlatillo");
+                datos10[2] = rs.getString("cantidadProductos");
+                datos10[3] = rs.getString("subtotal");
+                modeloDetallePedido.addRow(datos10);
+            }
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información del pedido " + e.toString() + " ");
+        }
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT idPedido "
+                    + "FROM RESTAURANTBD.Pedido");
+
+            while (rs.next()) {
+                jComboBoxPedidoDetalle.addItem(rs.getString("idPedido"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de IdSucursal " + e.toString());
+        }
+
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Platillo.idPlatillo, '-', RESTAURANTBD.Platillo.descripcion) AS idPlatillo "
+                    + "FROM RESTAURANTBD.Platillo");
+
+            while (rs.next()) {
+                jComboBoxlPlatilloPedido.addItem(rs.getString("idPlatillo"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de idEmpleado " + e.toString());
+        }
+        
+        jComboBoxReporte2.removeAllItems();
+        try {
+            Statement at = conexion.createStatement();
+            ResultSet rs = at.executeQuery("SELECT CONCAT(RESTAURANTBD.Platillo.idPlatillo, '-', RESTAURANTBD.Platillo.nombre, '-', RESTAURANTBD.Platillo.descripcion) AS idPlatillo "
+                    + "FROM RESTAURANTBD.Platillo");
+
+            while (rs.next()) {
+                jComboBoxReporte2.addItem(rs.getString("idPlatillo"));
+            }
+
+            rs.close();
+            at.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo actualizar la información de idEmpleado " + e.toString());
+        }
                 
-                JTNombreSucursal.setText("");
-                JTDireccionSucursal.setText("");
-
-                modeloSucursal.setRowCount(0);
-                String datos22[] = new String[3];
-
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.Sucursal");
-                    while(rs.next())
-                    {
-                        datos22[0] = rs.getString("idSucursal");
-                        datos22[1] = rs.getString("nombre");
-                        datos22[2] = rs.getString("direccion");
-                        modeloSucursal.addRow(datos22);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
-                }
-                
-                JTNombreZona.setText("");
-                JTCPZona.setText("");
-                JTComisionZona.setText("");
-
-                modeloZonaDomicilio.setRowCount(0);
-                String datos33[] = new String[4];
-
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT *FROM RESTAURANTBD.ZonaDomicilio");
-                    while(rs.next())
-                    {
-                        datos33[0] = rs.getString("idZona");
-                        datos33[1] = rs.getString("nombre");
-                        datos33[2] = rs.getString("codigoPostal");
-                        datos33[3] = rs.getString("comisionCobro");
-                        modeloZonaDomicilio.addRow(datos33);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información");
-                }
-                
-                JTZonaCliente.setText("");
-                JTNombreCliente.setText("");
-                JTDomicilioCliente.setText("");
-                JTDireccionCliente.setText("");
-                JTTelefonoCliente.setText("");
-                JTEmailCliente.setText("");
-
-                modeloCliente.setRowCount(0);
-                String datos44[] = new String[7];
-
-                try{
-                    Statement at = conexion.createStatement();
-                    ResultSet rs =at.executeQuery("SELECT idCliente, RESTAURANTBD.Cliente.idZona, " +
-                                                    "CONCAT(RESTAURANTBD.ZonaDomicilio.idZona, '-', "
-                                                    + "RESTAURANTBD.ZonaDomicilio.nombre, '-', RESTAURANTBD.ZonaDomicilio.codigoPostal) AS Zona, " +
-                                                    "RESTAURANTBD.Cliente.nombre, domicilio, direccion, telefono, email " +
-                                                    "FROM RESTAURANTBD.Cliente INNER JOIN RESTAURANTBD.ZonaDomicilio " +
-                                                    "ON RESTAURANTBD.Cliente.idZona = RESTAURANTBD.ZonaDomicilio.idZona");
-                    while(rs.next())
-                    {
-                        datos44[0] = rs.getString("idCliente");
-                        datos44[1] = rs.getString("Zona");
-                        datos44[2] = rs.getString("nombre");
-                        datos44[3] = rs.getString("domicilio");
-                        datos44[4] = rs.getString("direccion");
-                        datos44[5] = rs.getString("telefono");
-                        datos44[6] = rs.getString("email");
-                        modeloCliente.addRow(datos44);
-                    }
-                    rs.close();
-                    at.close();
-                }catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo actualizar la información " + e.toString());
-                }
-                break;
-        }        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBEliminarCliente;
-    private javax.swing.JButton JBEliminarPlatillo;
+    private static javax.swing.JButton JBEliminarCocinero;
+    private static javax.swing.JButton JBEliminarEmpleado;
+    private static javax.swing.JButton JBEliminarGerente;
+    private javax.swing.JButton JBEliminarPedido;
+    private static javax.swing.JButton JBEliminarPedido1;
+    private static javax.swing.JButton JBEliminarPlatillo;
+    private static javax.swing.JButton JBEliminarRepartidor;
     private javax.swing.JButton JBEliminarSucursal;
     private javax.swing.JButton JBEliminarZona;
     private javax.swing.JButton JBInsertarCliente;
-    private javax.swing.JButton JBInsertarPlatillo;
+    private static javax.swing.JButton JBInsertarCocinero;
+    private static javax.swing.JButton JBInsertarEmpleado;
+    private static javax.swing.JButton JBInsertarGerente;
+    private javax.swing.JButton JBInsertarPedido;
+    private static javax.swing.JButton JBInsertarPedido1;
+    private static javax.swing.JButton JBInsertarPlatillo;
+    private static javax.swing.JButton JBInsertarRepartidor;
     private javax.swing.JButton JBInsertarSucursal;
     private javax.swing.JButton JBInsertarZona;
     private javax.swing.JButton JBModificarCliente;
-    private javax.swing.JButton JBModificarPlatillo;
+    private static javax.swing.JButton JBModificarCocinero;
+    private static javax.swing.JButton JBModificarEmpleado;
+    private static javax.swing.JButton JBModificarGerente;
+    private javax.swing.JButton JBModificarPedido;
+    private static javax.swing.JButton JBModificarPedido1;
+    private static javax.swing.JButton JBModificarPlatillo;
+    private static javax.swing.JButton JBModificarRepartidor;
     private javax.swing.JButton JBModificarSucursal;
     private javax.swing.JButton JBModificarZona;
-    private javax.swing.JTextField JTCPZona;
-    private javax.swing.JTable JTCliente;
-    private javax.swing.JTextField JTComisionZona;
-    private javax.swing.JTextField JTCostoPlatillo;
-    private javax.swing.JTextField JTDescripcionPlatillo;
-    private javax.swing.JTextField JTDireccionCliente;
-    private javax.swing.JTextField JTDireccionSucursal;
-    private javax.swing.JTextField JTDomicilioCliente;
-    private javax.swing.JTextField JTEmailCliente;
-    private javax.swing.JTextField JTNombreCliente;
-    private javax.swing.JTextField JTNombrePlatillo;
-    private javax.swing.JTextField JTNombreSucursal;
-    private javax.swing.JTextField JTNombreZona;
-    private javax.swing.JTable JTPlatillo;
-    private javax.swing.JTable JTSucursal;
-    private javax.swing.JTextField JTTelefonoCliente;
-    private javax.swing.JTable JTZona;
-    private javax.swing.JTextField JTZonaCliente;
+    private static javax.swing.JTextField JTCPZona;
+    private static javax.swing.JTextField JTCantProdDetalle;
+    private static javax.swing.JTable JTCantidadPedidos;
+    private static javax.swing.JTextField JTCelularEmpleado;
+    private static javax.swing.JTable JTCliente;
+    private static javax.swing.JTable JTCocinero;
+    private static javax.swing.JTextField JTComisionPedido;
+    private static javax.swing.JTextField JTComisionZona;
+    private static javax.swing.JTextField JTCostoPlatillo;
+    private static javax.swing.JTextField JTDescripcionPlatillo;
+    private static javax.swing.JTable JTDetallePedido;
+    private static javax.swing.JTextField JTDireccionCliente;
+    private static javax.swing.JTextField JTDireccionSucursal;
+    private static javax.swing.JTextField JTDomicilioCliente;
+    private static javax.swing.JTextField JTDomicilioEmpleado;
+    private static javax.swing.JTextField JTEmailCliente;
+    private static javax.swing.JTextField JTEmailEmpleado;
+    private static javax.swing.JTable JTEmpleado;
+    private static javax.swing.JTextField JTFechaPedido;
+    private static javax.swing.JTable JTGerente;
+    private static javax.swing.JTextField JTHoraDeseadaPedido;
+    private static javax.swing.JTextField JTHoraInicioPedido;
+    private static javax.swing.JTextField JTHorasCocinero;
+    private static javax.swing.JTextField JTNSSEmpleado;
+    private static javax.swing.JTextField JTNombreCliente;
+    private static javax.swing.JTextField JTNombreEmpleado;
+    private static javax.swing.JTextField JTNombrePlatillo;
+    private static javax.swing.JTextField JTNombreSucursal;
+    private static javax.swing.JTextField JTNombreZona;
+    private static javax.swing.JTextField JTPagoCocinero;
+    private static javax.swing.JTextField JTPagoRepartidor;
+    private static javax.swing.JTable JTPedido;
+    private static javax.swing.JTable JTPlatillo;
+    private static javax.swing.JTextField JTPlatillosCocinero;
+    private static javax.swing.JTable JTRepartidor;
+    private static javax.swing.JTable JTReporte2;
+    private static javax.swing.JTable JTSucursal;
+    private static javax.swing.JTextField JTSueldoFijoGerente;
+    private static javax.swing.JTextField JTTelefonoCliente;
+    private static javax.swing.JTextField JTTelefonoEmpleado;
+    private static javax.swing.JTable JTZona;
+    private javax.swing.JButton jButtonReporte1;
+    private javax.swing.JButton jButtonReporte2;
+    private static javax.swing.JComboBox<String> jComboBoxClientePedido;
+    private static javax.swing.JComboBox<String> jComboBoxIdEmpleadoCocinero;
+    private static javax.swing.JComboBox<String> jComboBoxIdEmpleadoGerente;
+    private static javax.swing.JComboBox<String> jComboBoxIdEmpleadoRepartidor;
+    private static javax.swing.JComboBox<String> jComboBoxPedidoDetalle;
+    private static javax.swing.JComboBox<String> jComboBoxReporte1;
+    private static javax.swing.JComboBox<String> jComboBoxReporte2;
+    private static javax.swing.JComboBox<String> jComboBoxSucursalEmpleado;
+    private static javax.swing.JComboBox<String> jComboBoxSucursalPedido;
+    private static javax.swing.JComboBox<String> jComboBoxZonaCliente;
+    private static javax.swing.JComboBox<String> jComboBoxlEmpleadoPedido;
+    private static javax.swing.JComboBox<String> jComboBoxlPlatilloPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private static javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPaneSucusal;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private static javax.swing.JTabbedPane jTabbedPaneSucusal;
     // End of variables declaration//GEN-END:variables
 }
